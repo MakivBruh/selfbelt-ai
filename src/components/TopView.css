@@ -1,0 +1,4 @@
+.top-drive-scene .top-road-markings{animation:top-road-scroll var(--top-road-duration) linear infinite;animation-play-state:paused}
+.top-drive-scene[data-running="true"] .top-road-markings{animation-play-state:running}
+@keyframes top-road-scroll{to{transform:translateY(80px)}}
+@media(prefers-reduced-motion:reduce){.top-drive-scene .top-road-markings{animation:none!important}}

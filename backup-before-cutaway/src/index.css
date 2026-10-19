@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@theme {
+  --color-surface: #111c26;
+  --color-border: #314252;
+  --color-muted: #b1bfcc;
+  --color-accent: #67d6ed;
+}
+:root { font-family: "Segoe UI", Arial, sans-serif; color: #edf3f8; background: #0a121a; color-scheme: dark; }
+body { margin: 0; min-width: 320px; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+input:disabled { opacity: .45; }
+::selection { background: #214c60; color: #fff; }
+:focus-visible { outline: 2px solid #67d6ed; outline-offset: 4px; }
+section { scroll-margin-top: 1rem; }
+

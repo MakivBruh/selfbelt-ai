@@ -1,0 +1,10 @@
+.drive-scene .drive-road,.drive-scene .drive-parallax,.drive-scene .drive-wheel{transform-box:fill-box;animation-play-state:paused}
+.drive-scene .drive-wheel{transform-origin:center;animation:drive-spin var(--wheel-duration) linear infinite;animation-play-state:paused}
+.drive-scene .drive-road{animation:drive-stripes var(--road-duration) linear infinite;animation-play-state:paused}
+.drive-scene .drive-parallax{animation:drive-background var(--far-duration) linear infinite;animation-play-state:paused}
+.drive-scene[data-running="true"] .drive-wheel,.drive-scene[data-running="true"] .drive-road,.drive-scene[data-running="true"] .drive-parallax{animation-play-state:running}
+.drive-scene .drive-indicator{opacity:1}
+@keyframes drive-spin{to{transform:rotate(360deg)}}
+@keyframes drive-stripes{to{transform:translateX(-80px)}}
+@keyframes drive-background{to{transform:translateX(-120px)}}
+@media(prefers-reduced-motion:reduce){.drive-scene .drive-wheel,.drive-scene .drive-road,.drive-scene .drive-parallax{animation:none!important}}
