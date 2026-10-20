@@ -35,11 +35,12 @@ export function DetectionPanel() {
         </dl>
         <table className="w-full text-left text-xs">
           <caption className="sr-only">{t.seatControls}</caption>
-          <thead className="text-muted"><tr><th scope="col" className="pb-2 font-medium">{t.logicSeat}</th><th scope="col" className="pb-2 font-medium">{t.occupiedControl}</th><th scope="col" className="pb-2 font-medium">{t.beltedControl}</th></tr></thead>
+          <thead className="text-muted"><tr><th scope="col" className="pb-2 font-medium">{t.logicSeat}</th><th scope="col" className="pb-2 font-medium">{t.occupiedControl}</th><th scope="col" className="pb-2 font-medium">{t.buckleShort}</th><th scope="col" className="pb-2 font-medium">{t.cameraShort}</th></tr></thead>
           <tbody>{seatIds.map(id => <tr key={id} className="border-t border-border">
             <th scope="row" className="py-2 pr-2 font-medium">{names[id]}</th>
             <td className="py-2 font-mono">{state.seats[id].occupied ? t.yes : t.no}</td>
             <td className="py-2 font-mono">{state.seats[id].belted ? t.yes : t.no}</td>
+            <td className="py-2 font-mono">{state.seats[id].cameraBelt ? t.yes : t.no}</td>
           </tr>)}</tbody>
         </table>
         
@@ -54,6 +55,7 @@ export function DetectionPanel() {
       <LogicBlock number="03" title={t.logicResult}>
         <p role="status" aria-live="polite" aria-atomic="true" className="flex flex-wrap items-center gap-3 text-sm"><span>{t.logicAlert}</span><LevelBadge level={derived.level} label={levels[derived.level]} /></p>
         <p className="mt-3 text-xs leading-relaxed text-muted">{t.logicPriority}</p>
+        <p className="mt-3 text-xs leading-relaxed text-muted">{t.safetyTiming} {t.safetyPolicy}</p>
       </LogicBlock>
       <LogicBlock number="04" title={t.logicActions}>
         {derived.recommendations.length ? <ul className="list-disc space-y-2 pl-4 text-sm leading-relaxed">{derived.recommendationTexts.map((text, i) => <li key={derived.recommendations[i]}>{text}</li>)}</ul>

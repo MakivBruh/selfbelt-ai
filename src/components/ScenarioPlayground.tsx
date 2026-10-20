@@ -3,11 +3,12 @@ import { Section } from './Layout'
 import Magnet from './react-bits/Magnet'
 import { useCopy, useSimulation } from '../simulation/context'
 import type { SeatId, SeatState } from '../simulation/model'
+import { safetyPhase } from '../simulation/safety'
 import { unbuckleRearLeft } from '../simulation/scenarios'
 import type { ScenarioId } from '../simulation/scenarios'
 
 const seatIds: SeatId[] = ['driver', 'frontPassenger', 'rearLeft', 'rearRight']
-const scenarioIds: ScenarioId[] = ['allSafe', 'driverUnbelted', 'rearUnbelted', 'unbucklesMoving', 'stopped']
+const scenarioIds: ScenarioId[] = ['allSafe', 'driverUnbelted', 'rearUnbelted', 'unbucklesMoving', 'behindBack', 'stopped']
 
 export function ScenarioPlayground() {
   const t = useCopy()
@@ -16,7 +17,7 @@ export function ScenarioPlayground() {
   const [activeScenario, setActiveScenario] = useState<ScenarioId | null>(null)
   const labels: Record<SeatId, string> = { driver: t.driverSeat, frontPassenger: t.frontPassengerSeat, rearLeft: t.rearLeftSeat, rearRight: t.rearRightSeat }
   const presets: Record<ScenarioId, string> = {
-    allSafe: t.presetAllSafe, driverUnbelted: t.presetDriver,
+    behindBack: t.presetBehind, allSafe: t.presetAllSafe, driverUnbelted: t.presetDriver,
     rearUnbelted: t.presetRear, unbucklesMoving: t.presetUnbuckle, stopped: t.presetStopped,
   }
   function changeSeat(id: SeatId, value: SeatState) {
@@ -48,23 +49,29 @@ export function ScenarioPlayground() {
           className="my-2 min-h-11 w-full accent-accent" />
         <div className="flex justify-between font-mono text-xs text-muted"><span>0</span><span>120 km/h</span></div>
         {!state.seats.driver.occupied && <p className="mt-2 text-xs status-notice">{t.driverRequired}</p>}
+        {['slowing', 'limited'].includes(safetyPhase(state)) && <p className="mt-2 text-xs status-notice">{t.speedLimited}</p>}
       </div>
       <fieldset className="space-y-3 border-t border-border pt-5">
         <legend className="float-left mb-3 w-full text-sm font-semibold">{t.seatControls}</legend>
         {seatIds.map(id => {
           const seat = state.seats[id]
-          return <div key={id} className="seat-control rounded border border-border p-3" data-state={!seat.occupied ? 'empty' : seat.belted ? 'safe' : 'warning'}>
+          return <div key={id} className="seat-control rounded border border-border p-3" data-state={!seat.occupied ? 'empty' : seat.belted && seat.cameraBelt ? 'safe' : 'warning'}>
             <p className="mb-2 text-sm font-medium">{labels[id]}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm">
               <label className="inline-flex min-h-11 cursor-pointer items-center gap-2">
                 <input type="checkbox" checked={seat.occupied} disabled={id === 'driver' && derived.moving}
-                  onChange={e => changeSeat(id, e.target.checked ? { occupied: true, belted: false } : { occupied: false, belted: false })}
+                  onChange={e => changeSeat(id, e.target.checked ? { occupied: true, belted: false, cameraBelt: false } : { occupied: false, belted: false, cameraBelt: false })}
                   className="size-5 accent-accent disabled:cursor-not-allowed" />{t.occupiedControl}
               </label>
               <label className="inline-flex min-h-11 cursor-pointer items-center gap-2">
                 <input type="checkbox" checked={seat.belted} disabled={!seat.occupied}
-                  onChange={e => changeSeat(id, { occupied: true, belted: e.target.checked })}
+                  onChange={e => changeSeat(id, { occupied: true, belted: e.target.checked, cameraBelt: seat.cameraBelt })}
                   className="size-5 accent-accent disabled:cursor-not-allowed" />{t.beltedControl}
+              </label>
+              <label className="inline-flex min-h-11 cursor-pointer items-center gap-2">
+                <input type="checkbox" checked={seat.cameraBelt} disabled={!seat.occupied}
+                  onChange={e => changeSeat(id, { occupied: true, belted: seat.belted, cameraBelt: e.target.checked })}
+                  className="size-5 accent-accent" />{t.cameraControl}
               </label>
             </div>
           </div>

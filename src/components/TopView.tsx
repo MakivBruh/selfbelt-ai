@@ -61,8 +61,9 @@ export function TopView() {
       </svg>
       <div id="seat-inspector" className="self-start border-t border-border pt-4" aria-label={t.seatControls}>
         <p className="text-xs text-accent">{t.selectedSeat}</p><h3 className="my-3 font-semibold">{names[selected]}</h3>
-        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="size-5 accent-accent" checked={seat.occupied} disabled={selected === 'driver' && derived.moving} onChange={e => dispatch({ type:'setSeat',seat:selected,value:e.target.checked ? {occupied:true,belted:false} : {occupied:false,belted:false} })} />{t.occupiedControl}</label>
-        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="size-5 accent-accent" checked={seat.belted} disabled={!seat.occupied} onChange={e=>dispatch({type:'setSeat',seat:selected,value:{occupied:true,belted:e.target.checked}})} />{t.beltedControl}</label>
+        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="size-5 accent-accent" checked={seat.occupied} disabled={selected === 'driver' && derived.moving} onChange={e => dispatch({ type:'setSeat',seat:selected,value:e.target.checked ? { occupied: true, belted: false, cameraBelt: false } : { occupied: false, belted: false, cameraBelt: false } })} />{t.occupiedControl}</label>
+        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="size-5 accent-accent" checked={seat.belted} disabled={!seat.occupied} onChange={e=>dispatch({type:'setSeat',seat:selected,value:{occupied:true,belted:e.target.checked,cameraBelt:seat.cameraBelt}})} />{t.beltedControl}</label>
+        <label className="flex min-h-11 items-center gap-3 text-sm"><input type="checkbox" className="size-5 accent-accent" checked={seat.cameraBelt} disabled={!seat.occupied} onChange={e=>dispatch({type:'setSeat',seat:selected,value:{occupied:true,belted:seat.belted,cameraBelt:e.target.checked}})} />{t.cameraControl}</label>
         <p className="mt-4 text-sm leading-relaxed text-muted" role="status">{derived.seats[selected].interpretation}</p>
         <p className="mt-4 text-xs leading-relaxed text-muted">{t.driverConstraint}</p>
       </div>

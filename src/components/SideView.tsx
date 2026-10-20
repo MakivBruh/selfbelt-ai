@@ -65,7 +65,7 @@ export function SideView() {
         <path d="M204 134L238 102H272V134ZM282 102H324Q333 102 341 112L363 134H282Z" fill="var(--glass)" stroke="var(--glass-edge)" strokeWidth="1.5" />
         <g fill="none" stroke="var(--chrome)" strokeWidth="1.2"><path d="M238 101L221 132M272 102V134M283 102V134M338 109L354 132" /><path d="M186 137H390M156 157H182M389 158H422" stroke="var(--car-dark)" /><path d="M123 177H146M420 180H447" /></g>
         <path d="M237 111Q248 107 253 117L254 132H231Z M304 110Q316 105 322 118L323 133H300Z" fill="var(--person-shirt)" stroke="var(--person)" strokeWidth="1" />
-        <g stroke="var(--seat-safe)" strokeWidth="2">{state.seats.rearLeft.occupied && state.seats.rearLeft.belted && <path d="M243 117L254 132" />}{state.seats.driver.occupied && state.seats.driver.belted && <path d="M309 117L322 132" />}</g>
+        <g stroke="var(--seat-safe)" strokeWidth="2">{state.seats.rearLeft.occupied && state.seats.rearLeft.belted && state.seats.rearLeft.cameraBelt && <path d="M243 117L254 132" />}{state.seats.driver.occupied && state.seats.driver.belted && state.seats.driver.cameraBelt && <path d="M309 117L322 132" />}</g>
         <g fill="var(--car-dark)" stroke="var(--car-edge)" strokeWidth="1"><path d="M125 152L110 147L109 163L125 164Z" /><path d="M438 152L451 151L453 170L440 169Z" /><rect x="263" y="149" width="10" height="3" rx="1" /><rect x="336" y="149" width="10" height="3" rx="1" /></g>
         <path d="M125 182Q160 187 184 180M205 181Q297 189 365 181M406 180Q426 186 447 180" fill="none" stroke="var(--car-light)" strokeWidth="1.2" />
         <path d="M184 154Q169 155 163 170M384 154Q401 155 406 170" fill="none" stroke="var(--car-dark)" strokeWidth="2" />

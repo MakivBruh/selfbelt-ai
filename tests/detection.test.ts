@@ -15,7 +15,7 @@ assert.equal(logic.deriveSimulation(unbelted, 'en').level, 'notice')
 unbelted.speedKmh = 1
 assert.equal(logic.deriveSimulation(unbelted, 'en').level, 'critical')
 unbelted.seats.driver.belted = true
-unbelted.seats.rearRight = { occupied: true, belted: false }
+unbelted.seats.rearRight = { occupied: true, belted: false, cameraBelt: false }
 assert.equal(logic.deriveSimulation(unbelted, 'en').level, 'warning')
 
 const example = logic.deriveSimulation(unbelted, 'en')
@@ -28,7 +28,7 @@ assert.deepEqual(example.recommendations, ['fastenBelt', 'slowDownSafely'])
 assert.equal(logic.deriveSimulation(unbelted, 'id').seats.rearRight.interpretation, 'Penumpang belakang kanan terisi dan sabuk belum terpasang saat kendaraan bergerak')
 assert.equal(logic.deriveSimulation(initial, 'en').recommendations.length, 0)
 assert.equal(logic.deriveSimulation(createInitialState(), 'en').seats.rearLeft.level, 'safe')
-const absentDriver = { ...initial, speedKmh: 10, seats: { ...initial.seats, driver: { occupied: false, belted: false } } } as typeof initial
+const absentDriver = { ...initial, speedKmh: 10, seats: { ...initial.seats, driver: { occupied: false, belted: false, cameraBelt: false } } } as typeof initial
 assert.equal(logic.deriveSimulation(absentDriver, 'en').level, 'critical')
 console.log('PASS: safe/notice/warning/critical, seat interpretations, localized output, recommendations, defensive driver state')
 

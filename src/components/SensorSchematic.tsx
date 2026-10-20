@@ -10,7 +10,8 @@ export function SensorSchematic() {
   const names = {driver:t.driverSeat,frontPassenger:t.frontPassengerSeat,rearLeft:t.rearLeftSeat,rearRight:t.rearRightSeat}
   const signals = ids.flatMap(id => [
     {label:`${names[id]} · ${t.occupiedControl}`, value:state.seats[id].occupied, detail:t.occupancySensor},
-    {label:`${names[id]} · ${t.beltedControl}`, value:state.seats[id].belted, detail:t.buckleSensor},
+    {label:`${names[id]} · ${t.buckleShort}`, value:state.seats[id].belted, detail:t.buckleSensor},
+    {label:`${names[id]} · ${t.cameraShort}`, value:state.seats[id].cameraBelt, detail:t.cameraSensor},
   ]).concat([{label:t.speed,value:derived.moving,detail:t.speedSensor}])
   const active = derived.level !== 'safe'
   return <Section id="sensor-schematic" title={t.sensorTitle}>
@@ -27,8 +28,8 @@ export function SensorSchematic() {
         </g>)}
         <rect x="370" y="160" width="190" height="120" rx="5" fill="var(--accent-soft)" stroke="var(--accent)" strokeWidth="2" />
         <text x="465" y="202" textAnchor="middle" fill="var(--ink)" fontSize="14">{t.ruleProcessor}</text>
-        <text x="465" y="229" textAnchor="middle" fill="var(--muted)" fontSize="12">occupied ∧ ¬belted</text>
-        <text x="465" y="252" textAnchor="middle" fill="var(--muted)" fontSize="12">speed &gt; 0</text>
+        <text x="465" y="229" textAnchor="middle" fill="var(--muted)" fontSize="12">buckle ∧ camera</text>
+        <text x="465" y="252" textAnchor="middle" fill="var(--muted)" fontSize="12">occupied ∧ speed &gt; 0</text>
         <path d="M560 220H615" stroke={active?'var(--notice)':'var(--line-strong)'} strokeWidth="3" />
         <rect x="615" y="186" width="175" height="68" rx="4" fill="var(--panel)" stroke={active?'var(--notice)':'var(--safe)'} strokeWidth="2" />
         <text x="702" y="214" textAnchor="middle" fill="var(--ink)" fontSize="13">{t.logicAlert}</text>

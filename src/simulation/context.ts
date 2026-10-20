@@ -9,6 +9,8 @@ type SimulationContextValue = {
   dispatch: Dispatch<SimulationAction>
   language: Language
   setLanguage: (language: Language) => void
+  audioState: 'off' | 'ready' | 'blocked'
+  toggleBuzzer: () => Promise<void>
 }
 export const SimulationContext = createContext<SimulationContextValue | null>(null)
 export function useSimulation() {
