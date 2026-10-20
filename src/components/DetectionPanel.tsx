@@ -6,10 +6,10 @@ import type { SeatId } from '../simulation/model'
 
 const seatIds: SeatId[] = ['driver', 'frontPassenger', 'rearLeft', 'rearRight']
 const colors: Record<AlertLevel, string> = {
-  safe: 'border-emerald-700 bg-emerald-950 text-emerald-200',
-  notice: 'border-amber-700 bg-amber-950 text-amber-200',
-  warning: 'border-orange-700 bg-orange-950 text-orange-200',
-  critical: 'border-red-700 bg-red-950 text-red-200',
+  safe: 'status-safe',
+  notice: 'status-notice',
+  warning: 'status-warning',
+  critical: 'status-critical',
 }
 function LogicBlock({ number, title, children }: PropsWithChildren<{ number: string; title: string }>) {
   return <div className="border-t border-border pt-4">
@@ -18,7 +18,7 @@ function LogicBlock({ number, title, children }: PropsWithChildren<{ number: str
   </div>
 }
 function LevelBadge({ level, label }: { level: AlertLevel; label: string }) {
-  return <span className={`inline-flex rounded border px-2 py-1 text-xs font-semibold ${colors[level]}`}>{label}</span>
+  return <span className={`status-badge inline-flex rounded border px-2 py-1 text-xs font-semibold ${colors[level]}`}>{label}</span>
 }
 export function DetectionPanel() {
   const t = useCopy()

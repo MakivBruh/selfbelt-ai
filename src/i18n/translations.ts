@@ -1,4 +1,5 @@
 const id = {
+  appearance: 'Tampilan', lightMode: 'Terang', darkMode: 'Gelap',
   skip: 'Lewati ke konten', navigation: 'Navigasi utama', language: 'Pilih bahasa',
   documentTitle: 'SafeBelt AI | Simulasi',
   prototype: 'SIMULASI KESELAMATAN', title: 'SafeBelt AI',
@@ -31,7 +32,7 @@ const id = {
   logicInputs: 'Input sistem', logicConditions: 'Kondisi yang ditafsirkan',
   logicResult: 'Hasil logika deteksi', logicActions: 'Tindakan yang disarankan',
   cutawayNote: 'Potongan atap • pilih kursi untuk memeriksa sensor dan mengubah kondisi.', selectedSeat: 'KURSI TERPILIH', notMonitored: 'Tidak dipantau',
-  sensorTitle:'Skema sensor', sensorNote:'Klik sensor untuk inspeksi. Semua sinyal berasal dari simulasi manual.', occupancySensor:'Sensor okupansi: aktif saat kursi terisi.', buckleSensor:'Sensor pengait: aktif saat sabuk terpasang.', speedSensor:'Input kecepatan; jalur aktif saat kecepatan di atas nol.', ruleProcessor:'Prosesor aturan', signalLegend:'Sian: sinyal true. Abu-abu: false. Jalur keluaran menyala saat peringatan aktif.',
+  sensorTitle:'Skema sensor', sensorNote:'Klik sensor untuk inspeksi. Semua sinyal berasal dari simulasi manual.', occupancySensor:'Sensor okupansi: aktif saat kursi terisi.', buckleSensor:'Sensor pengait: aktif saat sabuk terpasang.', speedSensor:'Input kecepatan; jalur aktif saat kecepatan di atas nol.', ruleProcessor:'Prosesor aturan', signalLegend:'Biru: sinyal true. Abu-abu: false. Jalur keluaran menyala saat peringatan aktif.',
   yes: 'Ya', no: 'Tidak',
   logicSeat: 'Kursi', logicBooleans: 'true = ya; false = tidak.', logicAlert: 'Tingkat peringatan',
   logicPriority: 'Prioritas demo: pengemudi tidak aman saat bergerak > penumpang tidak aman saat bergerak > kondisi saat berhenti. Bukan standar keselamatan otomotif.',
@@ -46,6 +47,7 @@ const id = {
 }
 type Copy = { [K in keyof typeof id]: (typeof id)[K] }
 const en: Copy = {
+  appearance: 'Appearance', lightMode: 'Light', darkMode: 'Dark',
   skip: 'Skip to content', navigation: 'Main navigation', language: 'Choose language',
   documentTitle: 'SafeBelt AI | Simulation',
   prototype: 'SAFETY SIMULATION', title: 'SafeBelt AI',
@@ -77,7 +79,7 @@ const en: Copy = {
   logicInputs: 'System input', logicConditions: 'Interpreted condition',
   logicResult: 'Detection logic result', logicActions: 'Recommended action',
   cutawayNote: 'Roof cutaway • select a seat to inspect and change its condition.', selectedSeat: 'SELECTED SEAT', notMonitored: 'Not monitored',
-  sensorTitle:'Sensor schematic', sensorNote:'Select a sensor to inspect it. All signals come from manual simulation.', occupancySensor:'Occupancy sensor: active when the seat is occupied.', buckleSensor:'Buckle sensor: active when the belt is fastened.', speedSensor:'Speed input; path active when speed is above zero.', ruleProcessor:'Rule processor', signalLegend:'Cyan: true signal. Gray: false. Output path active when an alert exists.',
+  sensorTitle:'Sensor schematic', sensorNote:'Select a sensor to inspect it. All signals come from manual simulation.', occupancySensor:'Occupancy sensor: active when the seat is occupied.', buckleSensor:'Buckle sensor: active when the belt is fastened.', speedSensor:'Speed input; path active when speed is above zero.', ruleProcessor:'Rule processor', signalLegend:'Blue: true signal. Gray: false. Output path active when an alert exists.',
   yes: 'Yes', no: 'No',
   logicSeat: 'Seat', logicBooleans: 'true = yes; false = no.', logicAlert: 'Alert level',
   logicPriority: 'Demo priority: unsafe driver while moving > unsafe passenger while moving > stationary conditions. Not an automotive safety standard.',

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "test": "node tests/model.test.ts && node tests/detection.test.ts && node tests/cabin.test.ts && node tests/driving.test.ts && node tests/scenarios.test.ts && node tests/i18n.test.ts && node tests/top-view-motion.test.ts && node tests/front-passenger.test.ts && node tests/ui-polish.test.ts",
+    "test": "node tests/model.test.ts && node tests/detection.test.ts && node tests/cabin.test.ts && node tests/driving.test.ts && node tests/scenarios.test.ts && node tests/i18n.test.ts && node tests/top-view-motion.test.ts && node tests/front-passenger.test.ts && node tests/ui-polish.test.ts && node tests/theme.test.ts",
     "preview": "vite preview"
   },
   "dependencies": {

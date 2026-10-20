@@ -47,13 +47,13 @@ export function ScenarioPlayground() {
           onChange={e => { dispatch({ type: 'setSpeed', value: Number(e.target.value) }); setMessage(''); setActiveScenario(null) }}
           className="my-2 min-h-11 w-full accent-accent" />
         <div className="flex justify-between font-mono text-xs text-muted"><span>0</span><span>120 km/h</span></div>
-        {!state.seats.driver.occupied && <p className="mt-2 text-xs text-amber-300">{t.driverRequired}</p>}
+        {!state.seats.driver.occupied && <p className="mt-2 text-xs status-notice">{t.driverRequired}</p>}
       </div>
       <fieldset className="space-y-3 border-t border-border pt-5">
         <legend className="float-left mb-3 w-full text-sm font-semibold">{t.seatControls}</legend>
         {seatIds.map(id => {
           const seat = state.seats[id]
-          return <div key={id} className="seat-control rounded border border-border bg-[#0c1a24] p-3" data-state={!seat.occupied ? 'empty' : seat.belted ? 'safe' : 'warning'}>
+          return <div key={id} className="seat-control rounded border border-border p-3" data-state={!seat.occupied ? 'empty' : seat.belted ? 'safe' : 'warning'}>
             <p className="mb-2 text-sm font-medium">{labels[id]}</p>
             <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm">
               <label className="inline-flex min-h-11 cursor-pointer items-center gap-2">
@@ -75,10 +75,10 @@ export function ScenarioPlayground() {
         <legend className="float-left mb-3 w-full text-sm font-semibold">{t.scenarioPresets}</legend>
         <div className="grid clear-both gap-2 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
           {scenarioIds.map(id => <Magnet key={id} padding={8} magnetStrength={20} maxOffset={3} wrapperClassName="preset-magnet"><button type="button" aria-pressed={activeScenario === id} onClick={() => applyScenario(id)}
-            className="min-h-11 rounded border border-border px-3 py-2 text-left text-sm hover:border-accent hover:bg-[#15303a]">{presets[id]}</button></Magnet>)}
+            className="min-h-11 rounded border border-border px-3 py-2 text-left text-sm hover:border-accent">{presets[id]}</button></Magnet>)}
         </div>
         {canUnbuckle && <button type="button" onClick={unbuckle}
-          className="mt-3 min-h-11 w-full rounded border border-amber-500 px-3 py-2 text-left text-sm text-amber-200 hover:bg-[#45331c]">{t.triggerUnbuckle}</button>}
+          className="mt-3 min-h-11 w-full rounded border warning-action px-3 py-2 text-left text-sm">{t.triggerUnbuckle}</button>}
       </fieldset>
       <div className="border-t border-border pt-4">
         <Magnet padding={8} magnetStrength={20} maxOffset={3}><button type="button" onClick={() => { dispatch({ type: 'reset' }); setMessage('resetDone'); setActiveScenario(null) }}

@@ -5,7 +5,7 @@ export function Container({ children }: PropsWithChildren) {
 }
 export function Section({ id, title, children }: PropsWithChildren<{ id: string; title: string }>) {
   return <section id={id} aria-labelledby={`${id}-heading`} className="section-shell min-w-0">
-    <SpotlightCard className="section-card p-4 sm:p-5 lg:p-6" spotlightColor="rgba(103, 214, 237, 0.4)" intensity={0.13}>
+    <SpotlightCard className="section-card p-4 sm:p-5 lg:p-6" spotlightColor="var(--accent)" intensity={0.04} borderGlow={0.1} flare={false}>
     <div className="mb-5 flex items-center gap-3 border-b border-border pb-3">
       <span aria-hidden="true" className="size-1.5 shrink-0 bg-accent" />
       <h2 id={`${id}-heading`} className="text-sm font-semibold tracking-wide sm:text-base">{title}</h2>
